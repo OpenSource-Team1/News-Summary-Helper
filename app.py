@@ -1,9 +1,6 @@
 import streamlit as st
 
 # 각 모듈에서 run 함수 import
-from pages.samples.plotting_sample import run as show_plotting
-from pages.samples.mapping_sample import run as show_mapping
-from pages.samples.dataframe_sample import run as show_dataframe
 from pages.samples.kobart_summary_sample import run as kobart_summary
 from pages.samples.generate_title_sample import run as generate_title
 from pages.demos.generate_and_detect_demo import run as generate_and_detect
@@ -24,9 +21,6 @@ def intro():
 # 메뉴 구성
 samples = {
     "Home": intro,
-    # "Plotting Demo": show_plotting,
-    # "Mapping Demo": show_mapping,
-    # "DataFrame Demo": show_dataframe,
     "Kobart News Summary Demo": kobart_summary,
     "Generate Summary Title Demo": generate_title
 }
@@ -38,6 +32,11 @@ demos = {
 }
 
 
+st.set_page_config(
+    page_title="뉴스 요약 앱",
+    layout="wide",  # 👉 여백 줄이고 넓게 보기
+    initial_sidebar_state="expanded"
+)
 pages = {**samples, **demos}  # 두 dict 병합
 page = st.sidebar.selectbox("Choose a page", pages.keys())
 pages[page]()
