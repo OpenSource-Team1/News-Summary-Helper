@@ -1,4 +1,4 @@
-# import streamlit as st
+import streamlit as st
 from utils.summaryNewsTest import summary_news        # 요약문 생성
 from utils.summaryNewsTest import decide_summary_len  # 요약문 길이 설정
 from utils.generateTitleTest import generate_title    # 제목 생성
@@ -6,7 +6,7 @@ from utils.extractor import extract_article_text      # 본문 추출
 from utils.language import detect_language            # 언어 감지
 
 
-def run(st):
+def run():
     st.sidebar.header('세부사항 선택')
     input_mode = st.sidebar.selectbox("입력 방식 선택", ("URL 입력", "직접 입력"))
 

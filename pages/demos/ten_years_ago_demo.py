@@ -1,47 +1,21 @@
 import streamlit as st
 import numpy as np
+import time, datetime
+from dateutil.relativedelta import relativedelta
 from utils.connection import connectDB
 from components.news_summary_process import run as news_summary_process
-import time
-import datetime
-from dateutil.relativedelta import relativedelta
+from components.ten_years_ago_component import get_10years_ago_news, con, sidebarCon
 
 def run():
     st.title("📝 10년 전 오늘 Demo")
-    df = getSql()
+    df = get_10years_ago_news() # 10년 전 기사 데이터 불러오기 (/components/ten_years_ago_component)
     
-
-
-    col1, col2 = st.columns([3, 2])
+    col1, col2 = st.columns([4, 1])
     data = np.random.randn(10, 1)
 
     with col1.container():
-        news_summary_process(st)
-    with col2.container():
-        con(df)
-    sidebarCon(df) # Sidebar에 출력
+        news_summary_process()  # generate_summary_and_title_demo 활용
+    with col2.container(border=True):
+        con(df)     # Case 1 : 페이지 우측면에 출력 (/components/ten_years_ago_component)
+    sidebarCon(df)  # Case 2 : Sidebar에 출력 (/components/ten_years_ago_component)
 
-def getSql():
-    correct_time = datetime.datetime.now() - relativedelta(years=10)
-    # st.write(correct_time.strftime('%Y-%m-%d'))
-
-    df = connectDB("select * from news_summary WHERE article_date =\"" + "2015-05-27" + "\"" ) #  correct_time.strftime('%Y-%m-%d')
-    return df
-
-
-
-def con(df):
-    for i in df:
-        # st.caption(str(i['id']) + ":" + i['category'])
-        with st.expander(i['title_summary']):
-            st.markdown("[" + i['body_summary'] + "](" + i['url'] + ")")
-
-
-def sidebarCon(df):
-    with st.sidebar:
-        with st.container(border=True):
-            st.info("✅ 10년 전 오늘")
-            for i in df:
-                st.markdown(str(i['id']) + " : [" + i['title_summary'][:20] + "..." + "](" + i['url'] + ")")
-                # st.metric(str(i['id']), i['title_summary'][:20], i['category'])
-            # st.caption("This is a string that explains something above.")

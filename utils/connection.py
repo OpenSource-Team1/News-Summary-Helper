@@ -2,6 +2,10 @@ import streamlit as st
 import os
 from dotenv import load_dotenv
 
+# Database에 연걸하는 메소드
+# Parameter : String sql = 불러오고자 하는 Select문 
+# Return : 반환 받은 DataSet을 Dictonary로 파싱 후 반환
+
 def connectDB(sql):
     if os.getenv("GITHUB_ACTIONS") != "true":
         load_dotenv()
