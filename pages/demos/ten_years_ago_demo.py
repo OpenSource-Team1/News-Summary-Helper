@@ -1,8 +1,4 @@
 import streamlit as st
-import numpy as np
-import time, datetime
-from dateutil.relativedelta import relativedelta
-from utils.connection import connectDB
 from components.news_summary_process import run as news_summary_process
 from components.ten_years_ago_component import get_10years_ago_news, con, sidebarCon
 
@@ -11,7 +7,6 @@ def run():
     df = get_10years_ago_news() # 10년 전 기사 데이터 불러오기 (/components/ten_years_ago_component)
     
     col1, col2 = st.columns([4, 1])
-    data = np.random.randn(10, 1)
 
     with col1.container():
         news_summary_process()  # generate_summary_and_title_demo 활용

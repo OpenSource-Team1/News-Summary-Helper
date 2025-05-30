@@ -27,7 +27,7 @@ samples = {
 demos = {
     "본문 추출 및 언어 감지 Sample" : generate_and_detect,
     "본문 내용 요약문 및 제목 생성 Sample" : generate_summary_and_title,
-    "저장된 기사 요약문 보기 Sample" : show_saved_articles
+    "저장된 기사 요약문 보기 Sample" : show_saved_articles,
     "10년 전 오늘 Sample" : ten_years_ago_demo
 }
 
