@@ -27,3 +27,24 @@ def get_topic():
              'health', 'labour', 'religion', 'weather', 'environment', 'conflict, war and peace']
 
     return topic
+
+def topic_to_category(topic):
+    socialCondition = (topic == 'human interest' or topic == 'society' or topic == 'crime, law and justice' or topic == 'disaster, accident and emergency incident' or topic == 'labour'
+                    or topic == 'religion')
+    cultureCondition = (topic == 'arts, culture, entertainment and media' or topic == 'lifestyle and leisure')
+    scienceCondition = (topic == 'education' or topic == 'science and technology' or topic == 'health' or topic == 'weather' or topic == 'environment')
+
+    if topic == 'economy, business and finance':
+        return "경제"
+    elif topic == 'politics':
+        return "정치"
+    elif socialCondition:
+        return "사회"
+    elif topic == 'conflict, war and peace':
+        return "국제"
+    elif cultureCondition:
+        return "문화"
+    elif topic == 'sport':
+        return "스포츠"
+    elif scienceCondition:
+        return "과학"

@@ -37,6 +37,7 @@ def selectDB(sql):
 
 
 def updateDB(sqlList, paramList):
+    print("update Start!")
     if os.getenv("GITHUB_ACTIONS") != "true":
         load_dotenv()
         
@@ -57,7 +58,6 @@ def updateDB(sqlList, paramList):
 
     with conn.session as session:
         for i in range(0, len(sqlList)):
-            print(i)
             session.execute(sqlList[i], paramList[i])
             session.commit()
     return {"status": "success"}
