@@ -28,23 +28,31 @@ def get_topic():
 
     return topic
 
+    # 상세 주제를 한국어 카테고리로 매핑합니다.
+
+    # Args:
+    #     topic (str): 분류된 주제 문자열
+        
+    # Returns:
+    #     str: 해당하는 한국어 카테고리 또는 None
+
 def topic_to_category(topic):
-    socialCondition = (topic == 'human interest' or topic == 'society' or topic == 'crime, law and justice' or topic == 'disaster, accident and emergency incident' or topic == 'labour'
-                    or topic == 'religion')
-    cultureCondition = (topic == 'arts, culture, entertainment and media' or topic == 'lifestyle and leisure')
-    scienceCondition = (topic == 'education' or topic == 'science and technology' or topic == 'health' or topic == 'weather' or topic == 'environment')
+    social_topics = {'human interest', 'society', 'crime, law and justice', 'disaster, accident and emergency incident', 'labour', 'religion'}
+    culture_topics = {'arts, culture, entertainment and media', 'lifestyle and leisure'}
+    science_topics = {'education', 'science and technology', 'health', 'weather', 'environment'}
 
     if topic == 'economy, business and finance':
         return "경제"
-    elif topic == 'politics':
+    if topic == 'politics':
         return "정치"
-    elif socialCondition:
+    if topic in social_topics:
         return "사회"
-    elif topic == 'conflict, war and peace':
+    if topic == 'conflict, war and peace':
         return "국제"
-    elif cultureCondition:
+    if topic in culture_topics:
         return "문화"
-    elif topic == 'sport':
+    if topic == 'sport':
         return "스포츠"
-    elif scienceCondition:
+    if topic in science_topics:
         return "과학"
+    return none;

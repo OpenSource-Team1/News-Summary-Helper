@@ -1,9 +1,15 @@
+import os
+import datetime
+
 import streamlit as st
-import os, datetime
-from dateutil.relativedelta import relativedelta
 from dotenv import load_dotenv
 
-def getCorrectTime():
+
+# 현재 날짜를 YYYY-MM-DD 형식의 문자열로 반환합니다.
+# Returns:
+#       str: 현재 날짜 문자열
+def get_correct_time():
+
     correct_time = datetime.datetime.now()
     target_date = correct_time.strftime('%Y-%m-%d')
     return target_date
@@ -36,7 +42,7 @@ def selectDB(sql):
     return df.to_dict(orient="records")
 
 
-def updateDB(sqlList, paramList):
+def updateDB(sql_list, param_list):
     print("update Start!")
     if os.getenv("GITHUB_ACTIONS") != "true":
         load_dotenv()
@@ -56,8 +62,12 @@ def updateDB(sqlList, paramList):
         },
     )
 
-    with conn.session as session:
-        for i in range(0, len(sqlList)):
-            session.execute(sqlList[i], paramList[i])
-            session.commit()
-    return {"status": "success"}
+    try:
+        with conn.session as session:
+            for sql, params in zip(sql_list, param_list):
+                session.execute(sql, params)
+                session.commit()
+    except Exception as e:
+        print(f"Database Update failed : {e}")
+        return {"status": "error"}
+    return {"status": "success"}    

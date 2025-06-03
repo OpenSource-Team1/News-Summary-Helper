@@ -6,20 +6,21 @@ from utils.connection import updateDB
 from newspaper import Article
 from sqlalchemy import text
 
-# 📌 예시: 네이버 뉴스 RSS (IT/과학)
-rss_url = ["https://www.khan.co.kr/rss/rssdata/economy_news.xml",
-           "https://www.khan.co.kr/rss/rssdata/politic_news.xml",
-           "https://www.khan.co.kr/rss/rssdata/society_news.xml",
-           "https://www.khan.co.kr/rss/rssdata/kh_world.xml",
-           "https://www.khan.co.kr/rss/rssdata/culture_news.xml",
-           "https://www.khan.co.kr/rss/rssdata/kh_sports.xml",
-           "https://www.khan.co.kr/rss/rssdata/science_news.xml"
-          ]  # 예시 (전자신문)
-rss_category = ["경제", "정치", "사회", "국제", "문화", "스포츠", "과학"]
-for i in range(0, 7):
+# 📌 RSS 피드 설정
+RSS_FEED = [
+    ("https://www.khan.co.kr/rss/rssdata/economy_news.xml", "경제"),
+    ("https://www.khan.co.kr/rss/rssdata/politic_news.xml", "정치"),
+    ("https://www.khan.co.kr/rss/rssdata/society_news.xml", "사회"),
+    ("https://www.khan.co.kr/rss/rssdata/kh_world.xml", "국제"),
+    ("https://www.khan.co.kr/rss/rssdata/culture_news.xml", "문화"),
+    ("https://www.khan.co.kr/rss/rssdata/kh_sports.xml", "스포츠"),
+    ("https://www.khan.co.kr/rss/rssdata/science_news.xml", "과학"),
+]
+
+for rss_feed in RSS_FEED:
     # 1️⃣ RSS 피드에서 기사 URL 가져오기
-    feed = feedparser.parse(rss_url[i])
-    print("RSS URL:", rss_url[i])
+    feed = feedparser.parse(rss_feed[0])
+    print("RSS URL:", rss_feed[0])
 
     print("Feed keys:", feed.keys())  # feed.entries 외에 어떤 키가 있는지 보기
     print("Entries 개수:", len(feed.entries))
@@ -29,7 +30,10 @@ for i in range(0, 7):
     # 2️⃣ 각 기사 크롤링
     sqlList = []
     paramList = []
-    for ii in range(0, 10):
+    crawl_count = 10
+    if len(feed.entries) < 10:
+        crawl_count = len(feed.entries)
+    for ii in range(0, crawl_count):
         entry = feed.entries[ii]
         url = entry.link
         print(f"\n[기사 URL] {url}")
@@ -42,7 +46,7 @@ for i in range(0, 7):
 
 
             print(f"제목: {article.title}")
-            print(f"분야: {rss_category[i]}")
+            print(f"분야: {rss_feed[1]}")
             print(f"날짜: {str(article.publish_date)[:10]}")
             print(f"본문 (10자): {article.text[:10]}...")
 
@@ -54,7 +58,7 @@ for i in range(0, 7):
 
             params = {
                 "url": entry.link,
-                "category": rss_category[i],
+                "category": rss_feed[1],
                 "title": article.title,
                 "date": str(article.publish_date)[:10],
                 "content": article.text

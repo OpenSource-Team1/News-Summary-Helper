@@ -4,8 +4,8 @@ from components.ten_years_ago_component import get_10years_ago_news, con, sideba
 
 
 def run():
-    
-    st.title("📝 ")
+    """뉴스 요약 메인 페이지를 실행합니다."""
+    st.title("📝뉴스 요약")
     df = get_10years_ago_news() # 10년 전 기사 데이터 불러오기 (/components/ten_years_ago_component)
     
     col1, col2 = st.columns([4, 1])

@@ -94,8 +94,12 @@ def show_summary_title(text, lang):
             st.write(f"**{title}**")
             st.write(summary)
             st.write(f"공백 포함 요약문 길이: `{len(summary)}` | 분야: `{topic}`")
-            # show_similar_articles(topic, summary) # 기존에 요약을 진행한 기사 
-            suggest_related_news() # 같은 category에서 유사도가 높은 순서 관련 기사 (components/related_news_component.py)
+
+            # 기존에 요약을 진행한 기사 
+            # show_similar_articles(topic, summary) 
+
+            # 같은 category에서 유사도가 높은 순서 관련 기사 (components/related_news_component.py)
+            suggest_related_news() 
 
 
 
