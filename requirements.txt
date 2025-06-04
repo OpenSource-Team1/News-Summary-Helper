@@ -6,7 +6,7 @@ pytz==2025.2
 scikit_learn==1.6.1
 selenium==4.33.0
 SQLAlchemy==2.0.41
-torch==2.0.1+cpu
+torch==2.0.1
 transformers==4.51.3
 
 
