@@ -1,4 +1,4 @@
-from newspaper import Article, ArticleException
+from newspaper3k import Article, ArticleException
 
 def extract_article_text(url: str) -> str:
     """
