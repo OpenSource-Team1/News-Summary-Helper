@@ -1,5 +1,5 @@
 import streamlit as st
-from pages.components.generate_and_detect_component import generate_and_detect
+from components.generate_and_detect_component import generate_and_detect
 
 def run():
     st.title("📝 본문 추출 및 언어 감지 Demo")
@@ -10,6 +10,6 @@ def run():
         if not url.strip():
             st.warning("텍스트를 입력해주세요.")
         else:
-            generate_and_detect()
+            generate_and_detect(url)
 
                 
