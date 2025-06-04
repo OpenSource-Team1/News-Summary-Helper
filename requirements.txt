@@ -6,7 +6,7 @@ pytz==2025.2
 scikit_learn==1.6.1
 selenium==4.33.0
 SQLAlchemy==2.0.41
-torch==2.7.0
+torch==2.0.1+cpu
 transformers==4.51.3
 
 
@@ -15,6 +15,7 @@ feedparser==6.0.11
 newspaper3k==0.2.8
 beautifulsoup4==4.13.2
 lxml==5.4.0
+lxml_html_clean==0.4.2
 
 # Streamlit 웹앱 용도 (필요 시)
 streamlit==1.45.0
