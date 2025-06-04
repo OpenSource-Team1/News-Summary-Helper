@@ -3,11 +3,13 @@ langdetect==1.0.9
 pymysql==1.1.1
 numpy==2.2.6
 pytz==2025.2
-scikit_learn==1.6.1
 selenium==4.33.0
 SQLAlchemy==2.0.41
-torch==2.0.1
-transformers==4.51.3
+torch==2.1.2
+transformers==4.35.2
+sentence-transformers==2.2.2
+
+
 
 
 # 크롤링용
@@ -15,10 +17,11 @@ feedparser==6.0.11
 newspaper3k==0.2.8
 beautifulsoup4==4.13.2
 lxml==5.4.0
-lxml_html_clean==0.4.2
+lxml_html_clean==0.1.1
+scikit-learn==1.4.2
 
 # Streamlit 웹앱 용도 (필요 시)
-streamlit==1.45.0
+streamlit==1.33.0
 
 # 선택 사항 (모델 저장 등)
 safetensors==0.5.3
